@@ -7,19 +7,22 @@ import App from 'fusion-react';
 import Router from 'fusion-plugin-react-router';
 import Root from './root.js';
 
-import {renderer} from './plugins/material-ui/renderer';
+import {renderer, CustomThemeOptionsToken, SideEffectToken} from './plugins/material-ui/renderer';
 import {defaultThemeOptions} from './plugins/material-ui/mui';
+import {sideEffect} from './plugins/material-ui/hoc';
 import {RenderToken} from 'fusion-core';
 
 
 export default () => {
   const app = new App(Root);
   app.register(Router);
-  app.register(RenderToken, renderer(defaultThemeOptions));
-
+  app.register(CustomThemeOptionsToken, defaultThemeOptions);
+  app.register(SideEffectToken, sideEffect);
+  app.register(RenderToken, renderer);
   
   return app;
 };
+
 
 ```
 
