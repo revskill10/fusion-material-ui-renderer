@@ -6,7 +6,6 @@
 import App from 'fusion-react';
 import Router from 'fusion-plugin-react-router';
 import Root from './root.js';
-import React from 'react';
 
 import {renderer} from './plugins/material-ui/renderer';
 import {defaultThemeOptions} from './plugins/material-ui/mui';
