@@ -41,9 +41,9 @@ export const generateStyles = (themeOptions = defaultThemeOptions) => {
 }
 
 
-export const renderFullPage = (html, css) => {
+export const renderFullPage = (html, css, idStyle="jss-server-side") => {
   return `
     <div id="root">${html}</div>
-    <style id="jss-server-side">${css}</style>
+    <style id="${idStyle}">${css}</style>
   `;
 };
