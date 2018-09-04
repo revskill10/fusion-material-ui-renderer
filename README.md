@@ -23,3 +23,17 @@ export default () => {
 };
 
 ```
+
+## Current issues
+
+- This warning on both server and client side
+
+```
+warning.js:33 Warning: Can't call setState on a component that is not yet mounted. This is a no-op, but it might indicate a bug in your application. Instead, assign to `this.state` directly or define a `state = {};` class property with the desired state in the TransitionGroup component.
+```
+
+- Couldn't use `Root` with a `componentDidMount`, the error is: 
+
+```
+A Router could have only one child component
+```
