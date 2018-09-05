@@ -8,7 +8,7 @@ export const CustomThemeOptionsToken: Token<mixed> = createToken(
   'CustomThemeOptionsToken'
 );
 
-export const IdStyleToken: Token<mixed> = createToken(
+export const IdStyleToken: Token<string> = createToken(
   'IdStyleToken'
 );
 
