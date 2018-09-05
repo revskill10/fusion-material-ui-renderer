@@ -13,25 +13,31 @@ export const SideEffectToken: Token<mixed> = createToken(
   'SideEffectToken'
 );
 
+export const IdStyleToken: Token<mixed> = createToken(
+  'IdStyleToken'
+);
+
 export const renderer = createPlugin({
   deps: {
     customThemeOptions: CustomThemeOptionsToken.optional,
     sideEffect: SideEffectToken.optional,
+    idStyle: IdStyleToken.optional,
   },
   provides({
       customThemeOptions=defaultThemeOptions,
+      idStyle="jss-server-side"
     }) {
     return el => {
       const styles = generateStyles(customThemeOptions);
       return prepare(el).then(() => {
         return __NODE__ 
-        ? serverRender(el, {styles}) 
-        : clientRender(el, {styles});
+        ? serverRender(el, {styles}, idStyle) 
+        : clientRender(el, {styles}, idStyle);
       });
     };
   },
   middleware(
-    {sideEffect}
+    {sideEffect, idStyle}
   ) {
     return async (ctx, next) => {
       if (!ctx.element) {
@@ -40,7 +46,7 @@ export const renderer = createPlugin({
       
       if (__BROWSER__) {
         await middleware(ctx, next);
-        sideEffect();
+        sideEffect(idStyle);
       } else {
         await middleware(ctx, next);
       }
