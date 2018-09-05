@@ -24,7 +24,7 @@ export default () => {
 
 ## Current issues
 
-- This warning on both server and client side
+- [This warning](https://github.com/reactjs/react-transition-group/issues/164) on both server and client side
 
 ```
 warning.js:33 Warning: Can't call setState on a component that is not yet mounted. This is a no-op, but it might indicate a bug in your application. Instead, assign to `this.state` directly or define a `state = {};` class property with the desired state in the TransitionGroup component.
