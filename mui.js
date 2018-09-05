@@ -29,19 +29,14 @@ export const defaultThemeOptions = {
 export const generateStyles = (themeOptions = defaultThemeOptions) => {
   const classNames = createGenerateClassName();
   const sheetsRegistry = new SheetsRegistry();
-
-  // Create a sheetsManager instance.
   const sheetsManager = new Map();
-
-  // Create a theme instance.
   const theme = createMuiTheme(themeOptions);
-
 
   return {sheetsRegistry, classNames, theme, sheetsManager};
 }
 
 
-export const renderFullPage = (html, css, idStyle="jss-server-side") => {
+export const renderFullPage = (html, css, idStyle) => {
   return `
     <div id="root">${html}</div>
     <style id="${idStyle}">${css}</style>

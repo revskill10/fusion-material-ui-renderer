@@ -12,13 +12,6 @@ export const IdStyleToken: Token<mixed> = createToken(
   'IdStyleToken'
 );
 
-const sideEffect = (idStyle) => {
-  const jssStyles = document.querySelector(idStyle);
-  if (jssStyles && jssStyles.parentNode) {
-    jssStyles.parentNode.removeChild(jssStyles);
-  }
-}
-
 export const renderer = createPlugin({
   deps: {
     customThemeOptions: CustomThemeOptionsToken.optional,
@@ -30,6 +23,12 @@ export const renderer = createPlugin({
     }) {
     return el => {
       const styles = generateStyles(customThemeOptions);
+      const sideEffect = (idStyle) => {
+        const jssStyles = document.querySelector(idStyle);
+        if (jssStyles && jssStyles.parentNode) {
+          jssStyles.parentNode.removeChild(jssStyles);
+        }
+      }
       return prepare(el).then(() => {
         return __NODE__ 
         ? serverRender(el, {styles}, idStyle) 
@@ -37,16 +36,6 @@ export const renderer = createPlugin({
       });
     };
   },
-  middleware(
-  ) {
-    return async (ctx, next) => {
-      if (!ctx.element) {
-        return next();
-      }
-      
-      return middleware(ctx, next);
-    }
-  }
 });
 
 
